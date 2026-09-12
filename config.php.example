@@ -1,0 +1,17 @@
+<?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 0);
+	ini_set('log_errors', 1);
+	ini_set('error_log', 'php-error.log');
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+	$dbhost = "YOUR_DB_HOST";
+	$dbuser = "YOUR_DB_USER";
+	$dbpass = "YOUR_DB_PASS";
+	$dbname = "YOUR_DB_NAME";
+	
+	$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+?>
