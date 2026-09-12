@@ -1,8 +1,12 @@
 <?php
 	session_start();
+	if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+		header("Location: index.php");
+		exit();
+	}
+	
 	// Database Connection
 	include 'config.php';
-
 	if ($conn->connect_error) {
 		die("Database connection failed: " . $conn->connect_error);
 	}
@@ -43,15 +47,28 @@
 		}
 	}
 
+	// Dynamic Fetching Registry gikan sa Database Matrix
+	$criteria_list = [];
+	$criteria_query = $conn->query("SELECT criteria_key, label, weight, status FROM criteria ORDER BY sort_order ASC");
+	while ($c_row = $criteria_query->fetch_assoc()) {
+		$criteria_list[$c_row['criteria_key']] = [
+			'label'  => $c_row['label'],
+			'max'    => (float)$c_row['weight'], // ang 'weight' mao ang magsilbing 'max' score sa slider
+			'weight' => number_format($c_row['weight'], 0) . '%',
+			'status' => $c_row['status']
+		];
+	}
+
 	$criteria_weights = [20, 20, 15, 10, 25, 10];
 	$criteria_labels  = ['Production Number', 'Talent Portion', 'Evening Gown', 'Swimwear', 'Question & Answer', 'Stage Presence'];
 
 	// Define Titles setup mapping matrix
 	$titles_map = [
-		0 => ['title' => 'Beauty Queen',  'bg' => 'linear-gradient(135deg, #d4af37, #aa7c11)', 'icon' => 'fa-crown', 'text' => '#000'],
-		1 => ['title' => '1st Runner-up', 'bg' => 'linear-gradient(135deg, #b0b7bd, #7f8c8d)', 'icon' => 'fa-medal', 'text' => '#000'],
-		2 => ['title' => '2nd Runner-up', 'bg' => 'linear-gradient(135deg, #cd7f32, #965a38)', 'icon' => 'fa-award', 'text' => '#fff'],
-		3 => ['title' => '3rd Runner-up', 'bg' => 'linear-gradient(135deg, #b0b7bd, #1a202c)', 'icon' => 'fa-star',  'text' => '#fff']
+		0 => ['title' => 'Rank 1', 'bg' => 'linear-gradient(135deg, #d4af37, #c7ab0d)', 'icon' => 'fa-crown', 'text' => '#000'],
+		1 => ['title' => 'Rank 2', 'bg' => 'linear-gradient(135deg, #b0b7bd, #0bb497)', 'icon' => 'fa-medal', 'text' => '#000'],
+		2 => ['title' => 'Rank 3', 'bg' => 'linear-gradient(135deg, #cd7f32, #7141a2)', 'icon' => 'fa-award', 'text' => '#fff'],
+		3 => ['title' => 'Rank 4', 'bg' => 'linear-gradient(135deg, #b0b7bd, #3165b8)', 'icon' => 'fa-star',  'text' => '#fff'],
+		4 => ['title' => 'Rank 5', 'bg' => 'linear-gradient(135deg, #cd7f32, #b10e5a)', 'icon' => 'fa-trophy','text' => '#fff']
 	];
 	include 'header.php'; 
 	include 'navbar.php'; 
@@ -61,7 +78,7 @@
     <!-- Header Block -->
     <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
         <div>
-            <h2 class="text-white fw-bold tracking-wide"><i class="fa fa-chart-pie text-warning me-2"></i> OVER-ALL STATISTICS</h2>
+            <h2 class="text-white fw-bold tracking-wide"><i class="fa fa-chart-pie text-warning me-2"></i> STATISTICS (TOP-5)</h2>
             <p style="color:#bbb" class="mb-0 d-flex align-items-center gap-2">
                 <span class="pulse-live"></span> Visualizing Standing Leaderboard Matrix & Category Weights
             </p>
@@ -97,9 +114,9 @@
     <!-- WINNERS PODIUM ROW COMPONENT -->
     <div class="analytics-card mb-5">
         <h4 class="text-white mb-3 fw-semibold"><i class="fa fa-crown text-warning me-2"></i> Live Projected Royal Court Leaders</h4>
-        <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-xl-4">
+        <div class="row justify-content-center text-center g-3 row-cols-1 row-cols-sm-3 row-cols-xl-5">
             <?php 
-            for ($i = 0; $i < 4; $i++): 
+            for ($i = 0; $i < 5; $i++): 
                 if (isset($winners_pool[$i])): 
                     $data = $winners_pool[$i];
                     $meta = $titles_map[$i];
@@ -107,7 +124,7 @@
 			<div class="col">
 				<div class="winner-podium-card" style="background: <?php echo $meta['bg']; ?>; color: <?php echo $meta['text']; ?>;">
 					<div class="title-banner text-uppercase"><i class="fa <?php echo $meta['icon']; ?> me-1"></i> <?php echo $meta['title']; ?></div>
-					<div class="cand-num">Contestant #<?php echo $data['number']; ?></div>
+					<div class="cand-num">C#<?php echo $data['number']; ?></div>
 					<div class="cand-name"><?php echo htmlspecialchars($data['name']); ?></div>
 					<div class="cand-score">Score: <?php echo number_format($data['score'], 2); ?> / 100.00</div>
 					<i class="fa <?php echo $meta['icon']; ?> floating-icon"></i>

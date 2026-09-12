@@ -12,13 +12,13 @@
 		$title = "BPS | Management Panel";
 		
 	} else if ($current_file === 'admin_controller.php') {
-		$title = "BPS | Criteria Access";
+		$title = "BPS | Event Controller";
 
 	} else if ($current_file === 'admin_dashboard.php') {
 		$title = "BPS | Tabulation Dashboard";
 
 	} else if ($current_file === 'statistics.php') {
-		$title = "BPS | Actual Statistics";
+		$title = "BPS | TOP 5 Statistics";
 
 	} else if ($current_file === 'judge_scoring.php') {
 		$title = "BPS | Judge Board Scoring";

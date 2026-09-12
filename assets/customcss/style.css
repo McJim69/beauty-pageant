@@ -152,7 +152,7 @@ tr:hover { background:#bbb;color: #121212; }
 @media print {
 	body {background-color: #ffffff !important; color: #000000 !important; font-size: 11px; }
 	nav, .navbar, .dashboard-header, button, .btn, .live-indicator, .no-print, .nav-tabs { display: none !important; }
-
+	.table-responsive{border-radius:10px !important;border:1px solid #000 !important}
 	.tab-content > .tab-pane { display: none !important; opacity: 0 !important; }	
 	.tab-content > .tab-pane.active { display: block !important; opacity: 1 !important; } 
 	.container-fluid, .card { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }

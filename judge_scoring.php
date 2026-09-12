@@ -7,15 +7,17 @@
 
 	$judge_id = $_SESSION['judge_id'];
 
-	// 1. I-define ang max score sa matag criteria
-	$criteria_list = [
-		'production_number'   => ['label' => 'Production Number', 'max' => 20],
-		'talent_portion'      => ['label' => 'Talent Portion', 'max' => 20],
-		'evening_gown'        => ['label' => 'Evening Gown', 'max' => 15],
-		'swimwear'            => ['label' => 'Swimwear', 'max' => 10],
-		'question_and_answer' => ['label' => 'Question and Answer', 'max' => 25],
-		'stage_presence'      => ['label' => 'Stage Presence', 'max' => 10]
-	];
+	// Dynamic Fetching Registry gikan sa Database Matrix
+	$criteria_list = [];
+	$criteria_query = $conn->query("SELECT criteria_key, label, weight, status FROM criteria ORDER BY sort_order ASC");
+	while ($c_row = $criteria_query->fetch_assoc()) {
+		$criteria_list[$c_row['criteria_key']] = [
+			'label'  => $c_row['label'],
+			'max'    => (float)$c_row['weight'], // ang 'weight' mao ang magsilbing 'max' score sa slider
+			'weight' => number_format($c_row['weight'], 0) . '%',
+			'status' => $c_row['status']
+		];
+	}
 
 	include 'config.php';
 

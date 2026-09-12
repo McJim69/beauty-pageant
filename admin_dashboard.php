@@ -20,6 +20,36 @@
 		'stage_presence'      => ['label' => 'Stage Presence', 'weight' => '10%']
 	];
 
+	// 1. Dynamic Query Builder para sa Segmented Column averages matag Candidate
+	$dynamic_sum_parts = [];
+	$dynamic_select_parts = [];
+
+	$c_list_res = $conn->query("SELECT criteria_key FROM criteria ORDER BY sort_order ASC");
+	while($c_item = $c_list_res->fetch_assoc()) {
+		$key = $c_item['criteria_key'];
+		$dynamic_select_parts[] = "AVG(CASE WHEN s.criteria_name = '{$key}' THEN s.score END) as avg_{$key}";
+		$dynamic_sum_parts[] = "IFNULL(AVG(CASE WHEN s.criteria_name = '{$key}' THEN s.score END), 0)";
+	}
+
+	$select_columns_str = !empty($dynamic_select_parts) ? ", " . implode(", ", $dynamic_select_parts) : "";
+	$sum_columns_str = !empty($dynamic_sum_parts) ? " + " . implode(" + ", $dynamic_sum_parts) : "0";
+
+	// 2. Final Dynamic SQL Executive Execution Protocol
+	$sql_overall = "SELECT 
+				c.id AS contestant_id,
+				c.candidate_number,
+				c.fullname,
+				c.represented_location,
+				COUNT(DISTINCT s.judge_id) as total_judges_voted
+				{$select_columns_str},
+				({$sum_columns_str}) as final_average_score
+			FROM contestants c
+			LEFT JOIN scores s ON c.id = s.contestant_id
+			GROUP BY c.id
+			ORDER BY final_average_score DESC, c.candidate_number ASC";
+
+	$result_overall = $conn->query($sql_overall);
+	
 	// Kuhaon ang mga judges para mahimong dynamic headers sa kada criteria table
 	$judges_res = $conn->query("SELECT id, fullname, judge_number FROM judges ORDER BY judge_number ASC");
 	$judges_pool = [];
@@ -59,8 +89,26 @@
 	include 'header.php';
 	include 'navbar.php';
 ?>
-
+	
 <div class="container main-content">
+
+<?php 
+	// Quick runtime check for general admin awareness
+	$w_check = $conn->query("SELECT SUM(weight) as tw FROM criteria");
+	$w_row = $w_check->fetch_assoc();
+	if ((float)$w_row['tw'] !== 100.00): 
+?>
+    <div class="container-fluid px-4 no-print">
+        <div class="alert alert-danger bg-dark border-danger text-white d-flex align-items-center gap-3 py-3 shadow" role="alert">
+            <i class="fa fa-exclamation-triangle text-danger fs-3"></i>
+            <div>
+                <h5 class="alert-heading fw-bold text-danger mb-1">CRITERIA SYSTEM CONFIGURATION ERROR!</h5>
+                <p class="mb-0 small text-white-50">The overall scoring weights currently total <strong><?php echo number_format($w_row['tw'], 2); ?>%</strong> instead of 100%. Please go to <strong>Profiles Management > Pageant Criteria</strong> to recalibrate your parameters immediately.</p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 	<div class="dashboard-header py-3 px-4 mb-4 shadow no-print">
 		<div class="d-flex justify-content-between align-items-center flex-wrap">
 			<div>

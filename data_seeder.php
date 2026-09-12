@@ -20,10 +20,10 @@
 
 	// 3. Seed Contestants (Mga Kandidata)
 	$contestants = [
-		[1, 'Maria Clara Santos', 'Barangay San Jose'],
-		[2, 'Ana Patricia Reyes', 'Barangay Poblacion'],
-		[3, 'Jasmine Dela Cruz', 'Barangay Santa Maria'],
-		[4, 'Crystal Mae Flores', 'Barangay San Sebastian'],
+		[1, 'Maria Clara Santos',  'Barangay San Jose'],
+		[2, 'Ana Patricia Reyes',  'Barangay Poblacion'],
+		[3, 'Jasmine Dela Cruz',   'Barangay Santa Maria'],
+		[4, 'Crystal Mae Flores',  'Barangay San Sebastian'],
 		[5, 'Sofia Nicole Aquino', 'Barangay Santo Niño']
 	];
 
@@ -39,7 +39,7 @@
 	// Ang mga password kay gi-hash gamit ang `password_hash` para luwas. Ang password sa tanan kay: judge123
 	$default_password = password_hash('judge123', PASSWORD_DEFAULT);
 	$judges = [
-		[1, 'Judge Chairman - Ramos', 'judge1', $default_password],
+		[1, 'Judge Chairman - Ramos',   'judge1', $default_password],
 		[2, 'Judge Member - Fernandez', 'judge2', $default_password],
 		[3, 'Judge Member - Alcantara', 'judge3', $default_password]
 	];
@@ -74,9 +74,9 @@
 			$prod    = rand(15, 20) + (rand(0, 3) * 0.25); // Max 20
 			$talent  = rand(14, 20) + (rand(0, 3) * 0.25); // Max 20
 			$gown    = rand(11, 15) + (rand(0, 3) * 0.25); // Max 15
-			$swim    = rand(7, 10)   + (rand(0, 3) * 0.25); // Max 10
+			$swim    = rand(7, 10)  + (rand(0, 3) * 0.25); // Max 10
 			$qa      = rand(18, 25) + (rand(0, 3) * 0.25); // Max 25
-			$press   = rand(7, 10)   + (rand(0, 3) * 0.25); // Max 10
+			$press   = rand(7, 10)  + (rand(0, 3) * 0.25); // Max 10
 
 			$stmt_score->bind_param("iidddddd", $jid, $cid, $prod, $talent, $gown, $swim, $qa, $press);
 			$stmt_score->execute();
