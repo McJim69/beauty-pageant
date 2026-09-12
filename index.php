@@ -54,7 +54,7 @@
 	include 'header.php';
 ?>
 
-<style>body{background: #121212 url(images/logo.png)no-repeat; background-size:40%; background-position:center center;}</style>
+<style>body{background: #121212 url(images/queen_logo.webp)no-repeat; background-size:40%; background-position:center center;}</style>
 
 <div class="container d-flex align-items-center justify-content-center main-content" style="">
 

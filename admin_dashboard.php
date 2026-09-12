@@ -16,7 +16,7 @@
 		'talent_portion'      => ['label' => 'Talent Portion', 'weight' => '20%'],
 		'evening_gown'        => ['label' => 'Evening Gown', 'weight' => '15%'],
 		'swimwear'            => ['label' => 'Swimwear', 'weight' => '10%'],
-		'question_and_answer' => ['label' => 'Question & Answer', 'weight' => '25%'],
+		'question_and_answer' => ['label' => 'Q&A Portion', 'weight' => '25%'],
 		'stage_presence'      => ['label' => 'Stage Presence', 'weight' => '10%']
 	];
 
@@ -83,8 +83,8 @@
 					</li>
 				<?php $isActive = false; endforeach; ?>
 				<li class="nav-item">
-					<button class="nav-link text-warning border border-warning-subtle rounded-top" id="tab-overall" data-bs-toggle="tab" data-bs-target="#pane-overall" type="button" role="tab">
-						<i class="fa fa-trophy me-1"></i> OVER-ALL
+					<button class="nav-link text-warning border-warning-subtle rounded-top" id="tab-overall" data-bs-toggle="tab" data-bs-target="#pane-overall" type="button" role="tab">
+						<i class="fa fa-trophy me-1"></i> <b>OVER-ALL-TAB</b>
 					</button>
 				</li>
 			</ul>
@@ -92,8 +92,8 @@
 		<div class="print-only-header">
 			<div class="print-header-layout">
 				<!-- SLOT A: Left Side Logo (e.g. Pageant or Municipality Logo) -->
-				<div class="print-logo-slot">
-					<span><img src="images/logo.png"></span>
+				<div class="print-logo-slot" style="border:none !important">
+					<span><img src="images/logo.webp"></span>
 				</div>
 				<!-- CENTER: Official Text Contents Block -->
 				<div class="print-title-text">
@@ -103,8 +103,8 @@
 					<small style="color: #666; font-size: 11px; display: block; margin-top: 5px;">Generated on: <?php echo date('F d, Y h:i A'); ?></small>
 				</div>
 				<!-- SLOT B: Right Side Logo (e.g. SK or Tourism Logo) -->
-				<div class="print-logo-slot">
-					<span><img src="images/sk_logo.png"></span>
+				<div class="print-logo-slot" style="border:none !important">
+					<span><img src="images/sk_logo.webp"></span>
 				</div>
 			</div>
 		</div>
@@ -302,7 +302,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="sig-container" style="border-top: 1px dashed #ccc;">
+                        <div class="sig-container">
                             <div class="sig-row" style="justify-content: space-around !important;">
                                 <div class="sig-box" style="width: 45% !important;">
 									<div class="sig-line"></div>
