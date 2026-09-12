@@ -294,6 +294,8 @@
 										if ($rank == 1) $rank_class = 'rank-1';
 										if ($rank == 2) $rank_class = 'rank-2';
 										if ($rank == 3) $rank_class = 'rank-3';
+										if ($rank == 4) $rank_class = 'rank-4';
+										if ($rank == 5) $rank_class = 'rank-5';
 										
 										$final_score = $row['final_average_score'] ? number_format($row['final_average_score'], 2) : '0.00';
 								?>
@@ -306,7 +308,7 @@
 										</td>
 										<td class="text-start">
 											<div class="fw-bold fs-5"><?php echo htmlspecialchars($row['fullname']); ?></div>
-											<small class="text-muted">
+											<small>
 												<i class="fa fa-map-marker-alt text-danger me-1 no-print"></i> 
 												<?php echo htmlspecialchars($row['represented_location']); ?>
 											</small>
