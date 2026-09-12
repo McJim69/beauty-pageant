@@ -102,7 +102,7 @@ INSERT INTO criteria_status (criteria_name, status) VALUES
 1. **Local Wi-Fi Network Setup (No Active Internet Required):**
    - Connect the main server laptop (running XAMPP) and the judges' tablets to a single standalone **Wi-Fi Router**.
    - Obtain the local IPv4 address of the server laptop (e.g., `192.168.1.100`).
-   - Launch the web browsers on the judges' tablets and type the server network URL pathway: `http://192.168.1`.
+   - Launch the web browsers on the judges' tablets and type the server network URL pathway: `http://192.168.1.100`.
 
 2. **Default System Credentials:**
    - **Admin Command Center:** Username: `admin` | Password: `admin123`
