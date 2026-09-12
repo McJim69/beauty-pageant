@@ -88,7 +88,7 @@
 <div class="main-content container py-4">
     <div class="mb-4">
         <h2 class="text-warning fw-bold"><i class="fa fa-users-cog me-2"></i> ROSTER MANAGEMENT PANEL</h2>
-        <p class="text-muted">Register, view, or manage your official judges and contest candidates profile setups.</p>
+        <p style="color:#bbb">Register, view, or manage your official judges and contest candidates profile setups.</p>
     </div>
 
     <!-- Alert Messages Display Area -->
@@ -120,15 +120,15 @@
                         <form method="POST" action="">
                             <input type="hidden" name="action" value="add_candidate">
                             <div class="mb-3">
-                                <label class="form-label small text-white-50">CANDIDATE NUMBER</label>
+                                <label class="form-label small">CANDIDATE NUMBER</label>
                                 <input type="number" name="candidate_number" class="form-control bg-dark border-secondary text-white" required min="1">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small text-white-50">FULL NAME</label>
+                                <label class="form-label small">FULL NAME</label>
                                 <input type="text" name="fullname" class="form-control bg-dark border-secondary text-white" required placeholder="e.g. Jane Doe">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small text-white-50">REPRESENTED LOCATION / BARANGAY</label>
+                                <label class="form-label small">REPRESENTED LOCATION / BARANGAY</label>
                                 <input type="text" name="represented_location" class="form-control bg-dark border-secondary text-white" placeholder="e.g. Barangay San Jose">
                             </div>
                             <button type="submit" class="btn btn-warning w-100 fw-bold mt-2"><i class="fa fa-save me-1"></i> Save Candidate</button>
@@ -155,8 +155,8 @@
                                         <?php while ($c = $candidates_list->fetch_assoc()): ?>
                                         <tr>
                                             <td><span class="badge bg-warning text-dark fw-bold fs-6">#<?php echo $c['candidate_number']; ?></span></td>
-                                            <td class="text-start fw-bold text-dark"><?php echo htmlspecialchars($c['fullname']); ?></td>
-                                            <td class="text-start text-dark"><?php echo htmlspecialchars($c['represented_location'] ?? 'N/A'); ?></td>
+                                            <td class="text-start fw-bold"><?php echo htmlspecialchars($c['fullname']); ?></td>
+                                            <td class="text-start"><?php echo htmlspecialchars($c['represented_location'] ?? 'N/A'); ?></td>
                                             <td>
                                                 <form method="POST" action="" onsubmit="return confirm('Sigurado ka nga papason kini nga kandidata?');">
                                                     <input type="hidden" name="action" value="delete_item">
@@ -193,22 +193,22 @@
                             <input type="hidden" name="action" value="add_judge">
                             
                             <div class="mb-3">
-                                <label class="form-label small text-white-50 fw-bold">JUDGE NUMBER / ORDER</label>
+                                <label class="form-label small fw-bold">JUDGE NUMBER / ORDER</label>
                                 <input type="number" name="judge_number" class="form-control bg-dark border-secondary text-white" required min="1" placeholder="e.g. 1">
                             </div>
                             
                             <div class="mb-3">
-                                <label class="form-label small text-white-50 fw-bold">JUDGE FULL NAME</label>
+                                <label class="form-label small fw-bold">JUDGE FULL NAME</label>
                                 <input type="text" name="fullname" class="form-control bg-dark border-secondary text-white" required placeholder="e.g. Hon. Juan Dela Cruz">
                             </div>
                             
                             <div class="mb-3">
-                                <label class="form-label small text-white-50 fw-bold">SYSTEM ACCESS USERNAME</label>
+                                <label class="form-label small fw-bold">SYSTEM ACCESS USERNAME</label>
                                 <input type="text" name="username" class="form-control bg-dark border-secondary text-white" required placeholder="e.g. judge1" autocomplete="off">
                             </div>
                             
                             <div class="mb-4">
-                                <label class="form-label small text-white-50 fw-bold">TEMPORARY PASSWORD</label>
+                                <label class="form-label small fw-bold">TEMPORARY PASSWORD</label>
                                 <input type="password" name="password" class="form-control bg-dark border-secondary text-white" required placeholder="Enter system security pass">
                             </div>
                             
@@ -244,7 +244,7 @@
                                                     ID #<?php echo $j['judge_number']; ?>
                                                 </span>
                                             </td>
-                                            <td class="text-start fw-bold text-dark">
+                                            <td class="text-start fw-bold">
                                                 <?php echo htmlspecialchars($j['fullname']); ?>
                                             </td>
                                             <td class="text-start text-info">

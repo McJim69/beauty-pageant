@@ -93,19 +93,17 @@
 			<div class="print-header-layout">
 				<!-- SLOT A: Left Side Logo (e.g. Pageant or Municipality Logo) -->
 				<div class="print-logo-slot">
-					<!-- Pwede nimo butangan og tinuod nga image path sa unahan: <img src="images/lgu_logo.png"> -->
 					<span><img src="images/logo.png"></span>
 				</div>
 				<!-- CENTER: Official Text Contents Block -->
 				<div class="print-title-text">
-					<h5>Search for Miss Mutya ng Tambunan 2026</h5>
+					<h5>Search for Mutya ng Tambunan 2026</h5>
 					<h2 style="margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 22px;">Official Pageant Tabulation Report</h2>
 					<p style="margin: 4px 0 0 0; font-style: italic; color: #444; font-size: 15px; font-weight: bold;" id="printSubTitle">Segment Score Sheet</p>
 					<small style="color: #666; font-size: 11px; display: block; margin-top: 5px;">Generated on: <?php echo date('F d, Y h:i A'); ?></small>
 				</div>
 				<!-- SLOT B: Right Side Logo (e.g. SK or Tourism Logo) -->
 				<div class="print-logo-slot">
-					<!-- Pwede nimo butangan og tinuod nga image path sa unahan: <img src="images/sk_logo.png"> -->
 					<span><img src="images/sk_logo.png"></span>
 				</div>
 			</div>

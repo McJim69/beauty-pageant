@@ -17,7 +17,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div class="container px-4">
         <!-- Logo / Brand Section -->
         <a class="navbar-brand fw-bold text-warning d-flex align-items-center gap-2" href="#">
-            <i class="fa fa-crown"></i> PAGEANT LEADERBOARD
+            <i class="fa fa-crown"></i> PAGEANT SYSTEM
         </a>
         <!-- Mobile Toggle Button (Hamburger Menu) -->
         <button class="navbar-toggler border-secondary text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
