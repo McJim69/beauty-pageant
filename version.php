@@ -4,7 +4,7 @@
  * Application Versioning & Cache Busting Utility
  */
 
-define('APP_VERSION', '1.0.3');
+define('APP_VERSION', '1.0.5');
 
 /**
  * Returns cache-busted URL with filemtime timestamp

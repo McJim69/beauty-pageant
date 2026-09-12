@@ -1,4 +1,64 @@
-[12-Sep-2026 16:36:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in D:\Server\www\projects\beauty-pageant\admin_controller.php:34
+[12-Sep-2026 17:24:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
 Stack trace:
 #0 {main}
-  thrown in D:\Server\www\projects\beauty-pageant\admin_controller.php on line 34
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:24:36 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:24:41 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:24:43 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:24:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:24:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:27:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:27:36 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:27:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:29:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in D:\Server\www\projects\beauty-pageant\admin_controller.php:25
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\admin_controller.php on line 25
+[12-Sep-2026 17:29:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in D:\Server\www\projects\beauty-pageant\admin_controller.php:25
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\admin_controller.php on line 25
+[12-Sep-2026 17:29:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in D:\Server\www\projects\beauty-pageant\admin_controller.php:25
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\admin_controller.php on line 25
+[12-Sep-2026 17:29:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in D:\Server\www\projects\beauty-pageant\admin_controller.php:25
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\admin_controller.php on line 25
+[12-Sep-2026 17:31:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:31:19 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22
+[12-Sep-2026 17:31:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\projects\beauty-pageant\toggle_criteria.php:22
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\projects\beauty-pageant\toggle_criteria.php on line 22

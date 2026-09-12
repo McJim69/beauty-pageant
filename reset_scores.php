@@ -27,8 +27,8 @@
 		$conn->query("TRUNCATE TABLE scores;");
 		$conn->query("SET FOREIGN_KEY_CHECKS = 1;");
 
-		// 2. I-reset ang tanang criteria status ngadto sa 'open'
-		$conn->query("UPDATE criteria_status SET status = 'open';");
+		// 2. I-reset ang tanang criteria status ngadto sa 'locked'
+		$conn->query("UPDATE criteria SET status = 'locked';");
 
 		// I-commit ang transaction kung walay nahitabong error
 		$conn->commit();

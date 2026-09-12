@@ -1,10 +1,5 @@
 <?php
 	session_start();
-	if (!isset($_SESSION['judge_id'])) {
-		header("Location: index.php");
-		exit();
-	}
-
 	header('Content-Type: application/json');
 
 	// 1. Siguraduhing naka-login ang Judge
@@ -15,12 +10,8 @@
 
 	$judge_id = (int)$_SESSION['judge_id'];
 
+	// 2. Database Connection
 	include 'config.php';
-
-	if ($conn->connect_error) {
-		echo json_encode(['status' => 'error', 'message' => 'Database connection failed: ' . $conn->connect_error]);
-		exit();
-	}
 
 	// 3. Susiha ang mga gipadalang data gikan sa Form
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,8 +24,8 @@
 			exit();
 		}
 
-		// 4. SECURITY CHECK: Siguraduha nga 'open' ug wala pa na-lock sa Admin kini nga criteria
-		$status_stmt = $conn->prepare("SELECT status FROM criteria_status WHERE criteria_name = ?");
+		// 4. 🔥 KORREKSYON SA SECURITY LOCK CHECK: Susiha ang status gikan sa bag-ong 'criteria' table
+		$status_stmt = $conn->prepare("SELECT status FROM criteria WHERE criteria_key = ? LIMIT 1");
 		$status_stmt->bind_param("s", $criteria_name);
 		$status_stmt->execute();
 		$status_result = $status_stmt->get_result()->fetch_assoc();
@@ -45,7 +36,7 @@
 			exit();
 		}
 
-		// 5. Pag-save sa mga scores (Bulk Upsert gamit ang Transaction para luwas ug paspas)
+		// 5. Pag-save sa mga scores gamit ang Transaction Architecture para luwas
 		$conn->begin_transaction();
 
 		try {
@@ -65,7 +56,7 @@
 			}
 
 			$stmt->close();
-			$conn->commit(); // I-commit kung malampuson ang tanan
+			$conn->commit(); // I-save sa database kung malampuson ang tanan
 
 			echo json_encode([
 				'status' => 'success',
@@ -73,7 +64,7 @@
 			]);
 
 		} catch (Exception $e) {
-			$conn->rollback(); // I-cancel tanan kung naay error sa tunga-tunga
+			$conn->rollback(); // I-cancel tanan kung naay error sa tunga-tunga aron dili maguba ang data
 			echo json_encode(['status' => 'error', 'message' => 'Transaction crash: ' . $e->getMessage()]);
 		}
 

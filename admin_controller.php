@@ -49,9 +49,10 @@
 	} else {
 		die("Database Query System Failure: " . $conn->error);
 	}
-	include 'header.php';
-	include 'navbar.php';
 ?>
+
+<?php include 'header.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container main-content">
     <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary">
@@ -94,12 +95,77 @@
                 </div>
             <?php endforeach; ?>
         </div>
+		<!-- Danger Zone Reset Button Component -->
+		<div class="card bg-dark border-danger p-3 mt-2 shadow-lg">
+			<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+				<div>
+					<h4 class="text-danger fw-bold mb-1"><i class="fa fa-exclamation-triangle"></i> DANGER ZONE</h4>
+					<p class="text-white mb-0 small">Kini nga button mopapas sa TANANG scores sa mga judges ug mo-open sa tanang criteria para sa tinuod nga event.</p>
+				</div>
+				<button id="btnResetDatabase" class="btn btn-danger btn-lg fw-bold px-4 text-uppercase">
+					<i class="fa fa-trash-alt me-2"></i> Wipe & Reset Scores
+				</button>
+			</div>
+		</div>		
     </div>
 </div>
 
-<script src="https://jquery.com"></script>
 <script>
 $(document).ready(function() {
+    // 🔥 EVENT TRIGGER: Activation handle para sa Wipe & Reset scores database protocol
+    $('#criteriaContainer').parent().append(`
+        <script>
+        $('#btnResetDatabase').on('click', function() {
+            Swal.fire({
+                title: 'CRITICAL WARNING!',
+                text: "Sigurado ka ba gyud nga papason ang TANANG scores sa database? Dili na kini mabalik ug ma-zero ang tibuok standing!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, RESET EVERYTHING!',
+                cancelButtonText: 'Cancel',
+                background: '#161925',
+                color: '#fff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let btn = $('#btnResetDatabase');
+                    btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Wiping Data...');
+
+                    $.ajax({
+                        url: 'reset_scores.php',
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(res) {
+                            if (res.status === 'success') {
+                                Swal.fire({
+                                    title: 'System Wiped!',
+                                    text: res.message,
+                                    icon: 'success',
+                                    background: '#161925',
+                                    color: '#fff'
+                                }).then(() => {
+                                    location.reload(); 
+                                });
+                            } else {
+                                Swal.fire('Error', res.message, 'error');
+                                btn.prop('disabled', false).html('<i class="fa fa-trash-alt me-2"></i> Wipe & Reset Scores');
+                            }
+                        },
+                        error: function() {
+                            Swal.fire('System Error', 'Could not communicate with the reset script framework.', 'error');
+                            btn.prop('disabled', false).html('<i class="fa fa-trash-alt me-2"></i> Wipe & Reset Scores');
+                        }
+                    });
+                }
+            });
+        });
+        <\/script>
+    `);
+
+    // Kung ang buton mo kay naay explicit selector ID target binding, gamita diretso kini:
+    $('.btn-danger.btn-lg').attr('id', 'btnResetDatabase');
+	
     $('.toggle-btn').on('click', function() {
         let btn = $(this);
         let criteria = btn.data('criteria');

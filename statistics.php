@@ -78,7 +78,7 @@
     <!-- Header Block -->
     <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
         <div>
-            <h2 class="text-white fw-bold tracking-wide"><i class="fa fa-chart-pie text-warning me-2"></i> STATISTICS (TOP-5)</h2>
+            <h2 class="text-white fw-bold tracking-wide"><i class="fa fa-chart-pie text-warning me-2"></i> TOP-5 STATISTICS</h2>
             <p style="color:#bbb" class="mb-0 d-flex align-items-center gap-2">
                 <span class="pulse-live"></span> Visualizing Standing Leaderboard Matrix & Category Weights
             </p>
