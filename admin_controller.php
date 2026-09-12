@@ -29,7 +29,7 @@
 	include 'navbar.php';
 ?>
 
-<div class="container py-5">
+<div class="container main-content">
     <div class="card card-custom p-4 shadow-lg">
         <h4 class="mb-4 text-white"><i class="fa fa-lock text-warning me-2"></i> Criteria Access Management</h4>
         
@@ -62,19 +62,18 @@
                 </div>
             <?php endforeach; ?>
         </div>
-					<!-- Danger Zone Reset Button Component -->
-					<div class="card bg-dark border-danger p-4 mt-5 shadow-lg">
-						<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-							<div>
-								<h4 class="text-danger fw-bold mb-1"><i class="fa fa-exclamation-triangle"></i> DANGER ZONE</h4>
-								<p class="text-white mb-0 small">Kini nga button mopapas sa TANANG scores sa mga judges ug mo-open sa tanang criteria para sa tinuod nga event.</p>
-							</div>
-							<button id="btnResetDatabase" class="btn btn-danger btn-lg fw-bold px-4 text-uppercase">
-								<i class="fa fa-trash-alt me-2"></i> Wipe & Reset Scores
-							</button>
-						</div>
-					</div>
-
+		<!-- Danger Zone Reset Button Component -->
+		<div class="card bg-dark border-danger p-3 mt-2 shadow-lg">
+			<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+				<div>
+					<h4 class="text-danger fw-bold mb-1"><i class="fa fa-exclamation-triangle"></i> DANGER ZONE</h4>
+					<p class="text-white mb-0 small">Kini nga button mopapas sa TANANG scores sa mga judges ug mo-open sa tanang criteria para sa tinuod nga event.</p>
+				</div>
+				<button id="btnResetDatabase" class="btn btn-danger btn-lg fw-bold px-4 text-uppercase">
+					<i class="fa fa-trash-alt me-2"></i> Wipe & Reset Scores
+				</button>
+			</div>
+		</div>
     </div>
 </div>
 

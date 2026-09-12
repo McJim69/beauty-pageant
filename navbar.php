@@ -13,7 +13,7 @@ if ($is_admin) {
 // Pagkuha sa ngalan sa current file para sa active state highlight
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark shadow mb-4" style="background-color: #161925; border-bottom: 2px solid #ffc107;">
+<nav class="navbar navbar-expand-lg navbar-dark shadow mb-4 fixed-top" style="background-color: #161925; border-bottom: 2px solid #ffc107;">
     <div class="container px-4">
         <!-- Logo / Brand Section -->
         <a class="navbar-brand fw-bold text-warning d-flex align-items-center gap-2" href="#">
@@ -41,7 +41,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-semibold <?php echo ($current_page == 'admin_dashboard.php') ? 'active text-warning fw-bold' : ''; ?>" href="admin_dashboard.php">
-                            <i class="fa fa-chart-bar me-1"></i> Leaderboard
+                            <i class="fa fa-chart-bar me-1"></i> Tabulation
                         </a>
                     </li>
 					<li class="nav-item">
@@ -68,11 +68,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <i class="fa fa-user-circle text-muted me-1"></i> 
                         Active: <strong class="text-white"><?php echo htmlspecialchars($user_display_name); ?></strong>
                     </span>
-                    <a href="logout.php" class="btn btn-outline-danger btn-sm px-3 fw-bold">
+                    <button onclick="endSession()" class="btn btn-outline-danger btn-sm px-3 fw-bold">
                         <i class="fa fa-sign-out-alt me-1"></i> Logout
-                    </a>
+                    </button>
                 </div>
             <?php endif; ?>
         </div>
     </div>
 </nav>
+
+<script>
+	function endSession(){	
+		if(confirm("Are you sure you want to Logout?")){
+			window.location.href = 'logout.php';
+		}
+	}
+</script>

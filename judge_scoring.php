@@ -45,12 +45,10 @@
 	$stmt->close();
 
 	include 'header.php';
+	include 'navbar.php'; 
 ?>
 
-<div class="main-content container py-4">
-    <!-- Navbar -->
-	<?php include 'navbar.php'; ?>
-
+<div class="main-content container">
     <!-- Criteria Selector Dropdown -->
     <div class="card card-custom p-3 mb-4 shadow">
         <label class="form-label fw-bold text-warning mb-2"><i class="fa fa-layer-group me-2"></i> SELECT CURRENT EVENT / CRITERIA:</label>

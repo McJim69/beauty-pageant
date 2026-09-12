@@ -60,7 +60,7 @@
 	include 'navbar.php';
 ?>
 
-<div class="container main-content py-4">
+<div class="container main-content">
 	<div class="dashboard-header py-3 px-4 mb-4 shadow no-print">
 		<div class="d-flex justify-content-between align-items-center flex-wrap">
 			<div>
@@ -98,6 +98,7 @@
 				</div>
 				<!-- CENTER: Official Text Contents Block -->
 				<div class="print-title-text">
+					<h5>Search for Miss Mutya ng Tambunan 2026</h5>
 					<h2 style="margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 22px;">Official Pageant Tabulation Report</h2>
 					<p style="margin: 4px 0 0 0; font-style: italic; color: #444; font-size: 15px; font-weight: bold;" id="printSubTitle">Segment Score Sheet</p>
 					<small style="color: #666; font-size: 11px; display: block; margin-top: 5px;">Generated on: <?php echo date('F d, Y h:i A'); ?></small>
@@ -186,7 +187,7 @@
                         <div class="signature-section mt-5" style="margin-top:50px">
                             <div class="row text-center">
                                 <div class="col-12 mb-4">
-                                    <h5 style="text-align: left; font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 5px;">Panel of Judges Signatures</h5>
+                                    <h5 style="text-align: left; font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 5px;">Judges Panel</h5>
                                 </div>
                                 <?php foreach($judges_list as $j_name): ?>
                                     <div class="col-4" style="margin-bottom: 30px; display: inline-block; width: 33%;">
@@ -290,7 +291,7 @@
                     <!-- 🔥 GI-REFACTOR NGA SIGNATURE LAYOUT MATRIX -->
                     <div class="signature-section mt-5">
                         <h5 style="text-align: left; font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 20px; color: #000 !important;">
-                            Panel of Judges Signatures (Official Verification)
+                            Judges Panel (Official Verification)
                         </h5>
                         <div class="sig-container">
                             <div class="sig-row">
