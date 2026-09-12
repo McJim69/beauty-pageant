@@ -54,9 +54,11 @@
 	include 'header.php';
 ?>
 
-<div class="main-content container d-flex align-items-center justify-content-center main-content">
+<style>body{background: #121212 url(images/logo.png)no-repeat; background-size:40%; background-position:center center;}</style>
 
-<div class="login-card p-4 mx-3">
+<div class="container d-flex align-items-center justify-content-center main-content" style="">
+
+<div class="login-card p-4 mx-3" style="background:rgba(0, 0, 0, 0.8);">
     <div class="login-header mb-4">
         <h3 class="text-warning fw-bold mb-1"><i class="fa fa-crown me-2"></i> PAGEANT SYSTEM</h3>
         <small class="text-muted">Official Tabulation Portal Login</small>
