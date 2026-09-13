@@ -197,8 +197,12 @@
                                         
                                         foreach ($judges_pool as $jg): 
                                             $s_query = $conn->query("SELECT score FROM scores WHERE contestant_id = {$cand['id']} AND judge_id = {$jg['id']} AND criteria_name = '{$key}' LIMIT 1");
-                                            $score_row = $s_query->fetch_assoc();
-                                            $current_score = $score_row['score'] ?? null;
+                                            if ($s_query) {
+                                                $score_row = $s_query->fetch_assoc();
+                                                $current_score = $score_row['score'] ?? null;
+                                            } else {
+                                                $current_score = null;
+                                            }
                                             
                                             if ($current_score !== null) {
                                                 $sum_scores += $current_score;

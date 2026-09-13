@@ -43,7 +43,8 @@
 	$status_stmt = $conn->prepare("SELECT status FROM criteria WHERE criteria_key = ? LIMIT 1");
 	$status_stmt->bind_param("s", $active_criteria);
 	$status_stmt->execute();
-	$status_result = $status_stmt->get_result()->fetch_assoc();
+	$status_res = $status_stmt->get_result();
+	$status_result = $status_res ? $status_res->fetch_assoc() : null;
 	$event_status = $status_result['status'] ?? 'open';
 	$status_stmt->close();
 
@@ -100,7 +101,7 @@
         <input type="hidden" name="criteria_name" value="<?php echo $active_criteria; ?>">
         
         <div class="candidate-list">
-            <?php if ($contestants && $contestants->num_rows > 0): ?>
+            <?php if (isset($contestants) && $contestants && $contestants instanceof mysqli_result && $contestants->num_rows > 0): ?>
                 <?php while($row = $contestants->fetch_assoc()): ?>
                     <div class="candidate-row shadow-sm d-flex align-items-center justify-content-between flex-wrap gap-3">
                         <div class="d-flex align-items-center gap-3">

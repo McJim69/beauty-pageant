@@ -1,49 +1,73 @@
--- Production Number: 20%
--- Talent Portion: 20%
--- Evening Gown: 15%
--- Swimwear: 10%
--- Question and Answer: 25%
--- Stage Presence: 10%
--- Total: 100%
-
 CREATE DATABASE IF NOT EXISTS pageant_tabulation;
 USE pageant_tabulation;
 
--- 1. Table para sa mga Contestants
-CREATE TABLE contestants (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    candidate_number INT NOT NULL UNIQUE,
-    fullname VARCHAR(100) NOT NULL,
-    represented_location VARCHAR(100) DEFAULT NULL, -- e.g., Barangay or Sitio name
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+DROP TABLE IF EXISTS `contestants`;
+CREATE TABLE IF NOT EXISTS `contestants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `candidate_number` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `represented_location` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `candidate_number` (`candidate_number`)
 );
 
--- 2. Table para sa mga Hurado (Judges)
-CREATE TABLE judges (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    judge_number INT NOT NULL UNIQUE,
-    fullname VARCHAR(100) NOT NULL,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL, -- Hashed passwords
-    status ENUM('active', 'inactive') DEFAULT 'active'
+INSERT INTO `contestants` (`id`, `candidate_number`, `fullname`, `represented_location`, `created_at`) VALUES
+(1, 1, 'Jelly Arcadio Impal', 'City of Dapitan', '2026-09-13 05:14:36'),
+(2, 2, 'Sarah Jane Cabante', 'City of Iligan', '2026-09-13 05:15:03'),
+(3, 3, 'Christina Palmer', 'City of Cebu', '2026-09-13 05:17:38'),
+(4, 4, 'Amanda Seyfried', 'City of Manila', '2026-09-13 05:18:35'),
+(5, 5, 'Sophie Hall', 'City of Dipolog', '2026-09-13 05:19:41'),
+(6, 6, 'Corina Sanchez', 'City of Tagbilaran', '2026-09-13 05:20:36');
+
+DROP TABLE IF EXISTS `criteria`;
+CREATE TABLE IF NOT EXISTS `criteria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criteria_key` varchar(50) NOT NULL,
+  `label` varchar(100) NOT NULL,
+  `weight` decimal(5,2) NOT NULL,
+  `sort_order` int(11) DEFAULT '0',
+  `status` enum('open','locked') DEFAULT 'open',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `criteria_key` (`criteria_key`)
 );
 
--- 3. Table diin isulod ang mga scores base sa imong criteria
-CREATE TABLE scores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    judge_id INT NOT NULL,
-    contestant_id INT NOT NULL,
-    production_number DECIMAL(5,2) DEFAULT 0.00, -- Max 20.00
-    talent_portion DECIMAL(5,2) DEFAULT 0.00,    -- Max 20.00
-    evening_gown DECIMAL(5,2) DEFAULT 0.00,      -- Max 15.00
-    swimwear DECIMAL(5,2) DEFAULT 0.00,          -- Max 10.00
-    question_and_answer DECIMAL(5,2) DEFAULT 0.00,-- Max 25.00
-    stage_presence DECIMAL(5,2) DEFAULT 0.00,     -- Max 10.00
-    total_score DECIMAL(5,2) GENERATED ALWAYS AS (
-        production_number + talent_portion + evening_gown + swimwear + question_and_answer + stage_presence
-    ) STORED,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (judge_id) REFERENCES judges(id) ON DELETE CASCADE,
-    FOREIGN KEY (contestant_id) REFERENCES contestants(id) ON DELETE CASCADE,
-    UNIQUE KEY unique_judge_contestant (judge_id, contestant_id)
+INSERT INTO `criteria` (`id`, `criteria_key`, `label`, `weight`, `sort_order`, `status`, `created_at`) VALUES
+(1, 'production_number', 'Production Number', '20.00', 1, 'locked', '2026-09-13 05:13:38'),
+(2, 'talent_portion', 'Talent Portion', '20.00', 2, 'locked', '2026-09-13 05:13:38'),
+(3, 'evening_gown', 'Evening Gown', '15.00', 3, 'locked', '2026-09-13 05:13:38'),
+(4, 'swimwear', 'Swimwear', '10.00', 4, 'locked', '2026-09-13 05:13:38'),
+(5, 'question_and_answer', 'Question and Answer', '25.00', 5, 'locked', '2026-09-13 05:13:38'),
+(6, 'stage_presence', 'Stage Presence', '10.00', 6, 'locked', '2026-09-13 05:13:38');
+
+DROP TABLE IF EXISTS `judges`;
+CREATE TABLE IF NOT EXISTS `judges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judge_number` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` enum('active','inactive') DEFAULT 'active',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `judge_number` (`judge_number`),
+  UNIQUE KEY `username` (`username`)
+);
+
+INSERT INTO `judges` (`id`, `judge_number`, `fullname`, `username`, `password`, `status`) VALUES
+(1, 1, 'McJim Castillon - Chairman', 'judge1', '$2y$10$5eU8sjvd6V1Aytm7zpWciuiSy/EI63fgZkoghhNLOXhslnOh649my', 'active'),
+(2, 2, 'Rolly Joy Fernandez - Member', 'judge2', '$2y$10$LwXgXVjWs0yAEFcpEPdjm.TLOsL5YvrqE.XbDu8MKfu5.C.cgWCSi', 'active'),
+(3, 3, 'Batoy Gemilga - Member', 'judge3', '$2y$10$9fo7ALOi/k/9mzBNyncugeq3dq8wR/aMJx1Put6VLRBh5pOaGSRR.', 'active');
+
+DROP TABLE IF EXISTS `scores`;
+CREATE TABLE IF NOT EXISTS `scores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judge_id` int(11) NOT NULL,
+  `contestant_id` int(11) NOT NULL,
+  `criteria_name` varchar(50) NOT NULL,
+  `score` decimal(5,2) DEFAULT '0.00',
+  `submitted_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_judge_contestant_criteria` (`judge_id`,`contestant_id`,`criteria_name`),
+  KEY `contestant_id` (`contestant_id`)
 );

@@ -28,7 +28,8 @@
 		$status_stmt = $conn->prepare("SELECT status FROM criteria WHERE criteria_key = ? LIMIT 1");
 		$status_stmt->bind_param("s", $criteria_name);
 		$status_stmt->execute();
-		$status_result = $status_stmt->get_result()->fetch_assoc();
+		$status_res = $status_stmt->get_result();
+		$status_result = $status_res ? $status_res->fetch_assoc() : null;
 		$status_stmt->close();
 
 		if (!$status_result || $status_result['status'] === 'locked') {
@@ -45,6 +46,9 @@
 					ON DUPLICATE KEY UPDATE score = VALUES(score)";
 			
 			$stmt = $conn->prepare($sql);
+			if ($stmt === false) {
+			    throw new Exception("Prepare failed: " . $conn->error);
+			}
 
 			foreach ($scores_array as $contestant_id => $score_value) {
 				$c_id = (int)$contestant_id;
