@@ -1,3 +1,11 @@
+<script>
+  // Hide loading screen after page fully loads
+  window.addEventListener("load", function() {
+    const loader = document.getElementById("loading-screen");
+    loader.style.display = "none";
+  });
+</script>
+
 <div class="footer">
 	<div class="col-md-12">
 		<div class="justify-content-center text-center">
